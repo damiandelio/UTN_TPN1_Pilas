@@ -1,7 +1,6 @@
 /// 12. Suponiendo la existencia de una pila MODELO (vacía o no),
 ///     eliminar de la pila DADA todos los elementos que existan en MODELO.
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "pila.h"
@@ -22,14 +21,15 @@ void ingresardatos(Pila *pila) {
     return;
 }
 
+// mueve todo el contenido de una pila a otra
 void mover(Pila *destino, Pila *origen){
     while(!pilavacia(origen)) {
         apilar(destino, desapilar(origen));
     }
 }
 
-// busca un valor dentro de una pila. Retorna 1 si lo encuentra y 0 si no lo encuentra
-int buscarValor( int val, Pila *pila ) {
+// busca un valor dentro de una pila. Retorna 1 si lo encuentra o 0 si no lo encuentra
+int valorPresente( int val, Pila *pila ) {
     Pila aux;
     int valTope = 0;
 
@@ -70,7 +70,7 @@ int main()
     ingresardatos(&dada);
 
     while(!pilavacia(&dada)) {
-        valorEncontrado = buscarValor(tope(&dada), &modelo);
+        valorEncontrado = valorPresente(tope(&dada), &modelo);
         if(valorEncontrado) {
             desapilar(&dada);
         } else {
